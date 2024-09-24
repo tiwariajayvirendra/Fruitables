@@ -1,8 +1,33 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react'
+import React,{useState} from 'react'
 import { Link } from 'react-router-dom'
-
+import { useDispatch } from 'react-redux'
+import { ADD_NEW_CATEGORY } from '../../../redux/constants/categories.constant'
 const CatergoryAddEdit = () => {
+  const initState={
+    name:"",
+    status:'0',
+    image:""
+  }
+  const dispatch=useDispatch();
+  const [data,setData]=useState(initState);
+  // const {name,state,image}=data;
+  const handleInputChange=(event)=>{
+    console.log(event.target.name)
+    setData((prevState)=>({
+     ...prevState,
+     [event.target.name]:event.target.value
+    }))
+  }
+  const submit=(event)=>{
+    event.preventDefault();
+    console.log(data)
+    dispatch({
+      type: ADD_NEW_CATEGORY,
+      payload: data,
+    });
+    setData(initState)
+  }
   return (
     <div>
         {/* Single Page Header start */}
@@ -30,7 +55,7 @@ const CatergoryAddEdit = () => {
                   <button className="btn btn-primary">Back</button>
                 </Link>
               </div>
-      <form>
+      <form onSubmit={submit}>
         {/* Category Name */}
         <div className="mb-3">
           <label htmlFor="name" className="form-label">
@@ -41,8 +66,8 @@ const CatergoryAddEdit = () => {
             className="form-control"
             id="name"
             name="name"
-            // value={formData.name}
-            // onChange={handleInputChange}
+            value={data.name}
+            onChange={handleInputChange} 
             required
           />
         </div>
@@ -56,12 +81,14 @@ const CatergoryAddEdit = () => {
             className="form-select"
             id="status"
             name="status"
-            // value={formData.status}
-            // onChange={handleInputChange}
+
+            value={data.status}
+            defaultValue={'0'}
+            onChange={handleInputChange} 
             required
           >
-            <option value="active">Active</option>
-            <option value="inactive">Inactive</option>
+            <option value='1'>Active</option>
+            <option value='0'>Inactive</option>
           </select>
         </div>
 
@@ -77,7 +104,7 @@ const CatergoryAddEdit = () => {
             name="image"
             accept="image/*"
            
-            required
+        
           />
         </div>
 
