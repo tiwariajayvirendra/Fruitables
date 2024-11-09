@@ -85,14 +85,14 @@ const Contact = () => {
                 <i className="fas fa-envelope fa-2x text-primary me-4" />
                 <div>
                   <h4>Mail Us</h4>
-                  <p className="mb-2">info@example.com</p>
+                  <p className="mb-2">ajaytripathi821@gmail.com</p>
                 </div>
               </div>
               <div className="d-flex p-4 rounded bg-white">
                 <i className="fa fa-phone-alt fa-2x text-primary me-4" />
                 <div>
                   <h4>Telephone</h4>
-                  <p className="mb-2">(+012) 3456 7890</p>
+                  <p className="mb-2">(+91) 3456 7890</p>
                 </div>
               </div>
             </div>
